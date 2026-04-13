@@ -11,42 +11,52 @@
 
 .logoWrap {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   @include flex-center;
 }
 
+// Spinning accent ring around logo
 .ring {
   position: absolute;
-  inset: 0;
+  inset: -6px;
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: var(--color-accent);
-  border-right-color: rgba(var(--color-accent-rgb), 0.3);
-  animation: spin 0.9s linear infinite;
+  border-right-color: rgba(var(--color-accent-rgb), 0.25);
+  animation: spin 1s linear infinite;
 }
 
-.letter {
-  font-family: $font-display;
-  font-size: $font-size-3xl;
-  font-weight: $font-weight-black;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+// Actual logo image
+.logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: $radius-xl;
   position: relative;
   z-index: 1;
-  letter-spacing: -0.04em;
 }
 
-.label {
+// Brand text below
+.brand {
+  @include flex-column(center, center, 3px);
+  text-align: center;
+}
+
+.brandName {
   font-family: $font-display;
-  font-size: $font-size-sm;
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+}
+
+.brandTag {
+  font-size: 10px;
   font-weight: $font-weight-semibold;
-  color: var(--text-secondary);
+  color: var(--color-accent);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 0;
 }
 
 @keyframes spin {
