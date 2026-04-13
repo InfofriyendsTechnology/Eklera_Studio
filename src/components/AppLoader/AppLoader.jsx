@@ -5,16 +5,20 @@ import styles from './AppLoader.module.scss';
 export default function AppLoader() {
   return (
     <div className={styles.overlay}>
+
       <motion.div
         className={styles.logoWrap}
-        initial={{ opacity: 0, scale: 0.6 }}
+        initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Spinning accent ring */}
+        {/* Always-visible dim track ring */}
+        <div className={styles.ringBg} />
+
+        {/* Spinning accent arc */}
         <div className={styles.ring} />
 
-        {/* Actual brand logo */}
+        {/* Logo — full size, no clipping */}
         <motion.img
           src={logoIcon}
           alt="Eklera Studio"
@@ -25,16 +29,15 @@ export default function AppLoader() {
         />
       </motion.div>
 
-      {/* Brand name */}
-      <motion.div
-        className={styles.brand}
-        initial={{ opacity: 0, y: 10 }}
+      <motion.span
+        className={styles.tag}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.38, duration: 0.4 }}
+        transition={{ delay: 0.35, duration: 0.35 }}
       >
-        <span className={styles.brandName}>Eklera Studio</span>
-        <span className={styles.brandTag}>Repeat Calculator</span>
-      </motion.div>
+        Repeat Calculator
+      </motion.span>
+
     </div>
   );
 }

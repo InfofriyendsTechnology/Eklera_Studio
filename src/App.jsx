@@ -15,12 +15,13 @@ export default function App() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {loading && (
           <motion.div
             key="loader"
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
             style={{ position: 'fixed', inset: 0, zIndex: 9999 }}
           >
             <AppLoader />
@@ -28,7 +29,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {!loading && <RouterProvider router={router} />}
+      <RouterProvider router={router} />
     </>
   );
 }

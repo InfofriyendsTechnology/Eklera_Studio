@@ -5,58 +5,57 @@
   position: fixed;
   inset: 0;
   background: var(--bg-primary);
-  @include flex-column(center, center, $space-md);
+  @include flex-column(center, center, $space-lg);
   z-index: 9999;
 }
 
+// Outer container — ring lives here, logo floats inside
 .logoWrap {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 148px;
+  height: 148px;
   @include flex-center;
 }
 
-// Spinning accent ring around logo
+// 1. Static dim full circle (always visible track)
+.ringBg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(var(--color-accent-rgb), 0.15);
+}
+
+// 2. Spinning accent arc on top of track
 .ring {
   position: absolute;
-  inset: -6px;
+  inset: 0;
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: var(--color-accent);
-  border-right-color: rgba(var(--color-accent-rgb), 0.25);
-  animation: spin 1s linear infinite;
+  animation: spin 0.95s linear infinite;
 }
 
-// Actual logo image
+// Logo = smaller than wrapper, lots of breathing room, NO border-radius clip
 .logo {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
-  border-radius: $radius-xl;
+  object-position: center;
+  display: block;
   position: relative;
   z-index: 1;
+  // NO border-radius — never clips the logo
+  border-radius: 0;
 }
 
-// Brand text below
-.brand {
-  @include flex-column(center, center, 3px);
-  text-align: center;
-}
-
-.brandName {
-  font-family: $font-display;
-  font-size: $font-size-md;
+// Tagline below
+.tag {
+  font-size: 11px;
   font-weight: $font-weight-bold;
-  color: var(--text-primary);
-  letter-spacing: -0.025em;
-}
-
-.brandTag {
-  font-size: 10px;
-  font-weight: $font-weight-semibold;
   color: var(--color-accent);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  opacity: 0.9;
 }
 
 @keyframes spin {

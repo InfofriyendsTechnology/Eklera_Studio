@@ -42,8 +42,9 @@
   width: 36px;
   height: 36px;
   object-fit: contain;
-  border-radius: $radius-md;
+  object-position: center;
   flex-shrink: 0;
+  // No border-radius — logo has its own shape, clipping not needed
 
   @include sm {
     width: 30px;
