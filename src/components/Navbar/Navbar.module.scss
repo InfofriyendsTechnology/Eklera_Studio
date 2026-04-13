@@ -1,0 +1,89 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: var(--transition-theme);
+  width: 100%;
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: $space-md $space-xl;
+  @include flex-between;
+
+  @include md {
+    padding: $space-sm $space-lg;
+  }
+
+  @include sm {
+    padding: $space-sm $space-md;
+  }
+}
+
+.brand {
+  @include flex(row, center, flex-start, $space-sm);
+  cursor: default;
+  user-select: none;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.logoImg {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: $radius-md;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.brandText {
+  @include flex-column(flex-start, center, 1px);
+  min-width: 0;
+}
+
+.brandName {
+  font-family: $font-display;
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.brandTag {
+  font-size: 10px;
+  font-weight: $font-weight-semibold;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include sm {
+    font-size: 9px;
+  }
+}
+
+.right {
+  @include flex(row, center, flex-end, $space-md);
+  flex-shrink: 0;
+}

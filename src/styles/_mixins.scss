@@ -1,0 +1,143 @@
+@use 'variables' as *;
+
+// =============================================================================
+// EKLERA STUDIO — MIXINS
+// =============================================================================
+
+// Flexbox
+@mixin flex($direction: row, $align: center, $justify: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  @if $gap != 0 { gap: $gap; }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column($align: flex-start, $justify: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+  @if $gap != 0 { gap: $gap; }
+}
+
+// Responsive
+@mixin sm {
+  @media (max-width: #{$bp-sm}) { @content; }
+}
+@mixin md {
+  @media (max-width: #{$bp-md}) { @content; }
+}
+@mixin lg {
+  @media (max-width: #{$bp-lg}) { @content; }
+}
+@mixin min-md {
+  @media (min-width: #{$bp-md}) { @content; }
+}
+@mixin min-lg {
+  @media (min-width: #{$bp-lg}) { @content; }
+}
+
+// Typography
+@mixin heading($size: $font-size-2xl, $weight: $font-weight-bold) {
+  font-family: $font-display;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height-tight;
+  color: var(--text-primary);
+}
+
+@mixin body-text($size: $font-size-base, $color: var(--text-secondary)) {
+  font-size: $size;
+  line-height: $line-height-normal;
+  color: $color;
+}
+
+// Card
+@mixin card($padding: $space-xl) {
+  background: var(--bg-card);
+  border-radius: $radius-2xl;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  padding: $padding;
+}
+
+// Glassmorphism
+@mixin glass($opacity: 0.75, $blur: 20px) {
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  background: rgba(var(--bg-card-rgb, 255, 255, 255), $opacity);
+}
+
+// Input
+@mixin input-base {
+  width: 100%;
+  padding: $space-md $space-lg;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: $radius-xl;
+  font-size: $font-size-md;
+  font-family: $font-primary;
+  color: var(--text-primary);
+  transition: border-color $transition-normal, box-shadow $transition-normal, background $transition-normal;
+  box-sizing: border-box;
+
+  &::placeholder { color: var(--text-secondary); opacity: 0.5; }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.15);
+    background: var(--input-bg-focus);
+  }
+}
+
+// Glow effect
+@mixin glow($color-rgb, $intensity: 0.3, $blur: 20px) {
+  box-shadow: 0 0 $blur rgba($color-rgb, $intensity), 0 0 ($blur * 2) rgba($color-rgb, $intensity * 0.5);
+}
+
+// Gradient text
+@mixin gradient-text($from, $to, $direction: 135deg) {
+  background: linear-gradient($direction, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Transitions
+@mixin transition($props: all, $duration: $transition-normal) {
+  transition: $props $duration;
+}
+
+// Truncate
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

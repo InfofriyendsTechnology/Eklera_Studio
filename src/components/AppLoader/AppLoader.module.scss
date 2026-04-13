@@ -1,0 +1,54 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  @include flex-column(center, center, $space-md);
+  z-index: 9999;
+}
+
+.logoWrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  @include flex-center;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--color-accent);
+  border-right-color: rgba(var(--color-accent-rgb), 0.3);
+  animation: spin 0.9s linear infinite;
+}
+
+.letter {
+  font-family: $font-display;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-black;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.04em;
+}
+
+.label {
+  font-family: $font-display;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

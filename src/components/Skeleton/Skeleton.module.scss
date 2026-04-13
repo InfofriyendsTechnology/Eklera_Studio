@@ -1,0 +1,73 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// Shimmer animation
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    rgba(var(--color-accent-rgb), 0.06) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.skCircle {
+  border-radius: 50% !important;
+  flex-shrink: 0;
+}
+
+// ─── Calculator card skeleton ──────────────────────────────────────────────────
+
+.cardSkeleton {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: $radius-2xl;
+  overflow: hidden;
+
+  @include sm { border-radius: $radius-xl; }
+}
+
+.skRow {
+  padding: $space-lg $space-xl;
+  @include flex-column(flex-start, flex-start, $space-sm);
+
+  @include sm { padding: $space-md; }
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-color-light);
+}
+
+// ─── Result skeleton ──────────────────────────────────────────────────────────
+
+.resultSkeleton {
+  @include flex-column(flex-start, flex-start, $space-sm);
+}
+
+.resultSkCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: $radius-2xl;
+  padding: $space-xl;
+  @include flex(row, flex-start, flex-start, $space-lg);
+  width: 100%;
+
+  @include sm { padding: $space-md; gap: $space-md; border-radius: $radius-xl; }
+}
+
+.skTextGroup {
+  @include flex-column(flex-start, flex-start, $space-sm);
+  flex: 1;
+  min-width: 0;
+}
